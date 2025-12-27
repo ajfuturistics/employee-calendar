@@ -1,0 +1,258 @@
+📘 Requirement Document
+Employee Leave & Holiday Management Calendar App
+1. Project Overview
+Project Name (Working Title)
+
+WorkCal – Employee Leave & Holiday Calendar
+
+Purpose
+
+To provide companies with a centralized, timezone-aware calendar system to:
+
+Track employee leaves
+
+Manage company & national holidays
+
+Export leave data for HR reporting
+
+Support multi-company workspaces
+
+Target Users
+
+HR / Admin
+
+Employees
+
+Company Owners
+
+2. Tech Stack (Fixed)
+
+Frontend: Next.js (App Router)
+
+Styling: Tailwind CSS
+
+Auth: Email + Password / OAuth (will impliment later not now)
+
+Backend: API Routes / Server Actions
+
+Database:  MongoDB (use local url for now)
+
+Timezone Handling: UTC storage + user timezone rendering
+
+
+3. Core Concepts & Entities
+Workspace
+
+Created when a company or individual registers
+
+Represents one organization
+
+Can have multiple users
+
+Has its own calendar, holidays, and rules
+
+User Roles
+Role	Permissions
+Owner	Full access
+HR/Admin	Manage holidays, approve leaves, export
+Employee	Apply leaves, view calendar
+
+
+4. Authentication & Workspace Management
+Registration Flow
+
+User registers (email/password)
+
+Workspace is created automatically
+
+User becomes Owner
+
+Workspace gets:
+
+Unique ID
+
+Invite code
+
+Invite link
+
+Workspace Invitations
+
+Invite via:
+
+Shareable Link
+
+Invite Code
+
+Invited users select role (or assigned by HR)
+
+
+
+5. Calendar Features
+Calendar Views
+
+Month View (default)
+
+Week View (optional future)
+
+Day View (optional future)
+
+Calendar Data Includes
+
+Employee leaves
+
+Company holidays
+
+National holidays
+
+
+
+6. Employee Leave Management
+Leave Creation
+
+Single-day leave
+
+Multi-day leave
+
+Leave types:
+
+Casual
+
+Sick
+
+Paid
+
+Unpaid (configurable)
+
+Leave Properties
+
+Start date
+
+End date
+
+Leave type
+
+Reason (optional)
+
+Status:
+
+Pending
+
+Approved
+
+Rejected
+
+Rules
+
+Employees can:
+
+Add
+
+Edit
+
+Cancel leaves (before approval)
+
+HR can:
+
+Approve / Reject
+
+Edit leave entries
+
+
+
+7. Holiday Management (HR Only)
+Company Holidays
+
+Custom dates
+
+Optional recurring yearly
+
+Visible to all employees
+
+National Holidays
+
+Country-based
+
+Auto-loaded (future enhancement)
+
+Editable visibility
+
+8. Export & Reporting
+Export Filters
+
+Full month
+
+Custom date range
+
+By employee
+
+By leave type
+
+Export Formats
+Excel (.xlsx)
+
+Clean tabular format
+
+Columns:
+
+Employee Name
+
+Leave Type
+
+Start Date
+
+End Date
+
+Total Days
+
+Status
+
+Text File (.txt)
+
+Custom fixed format
+
+Example:
+
+EMP001 | JOHN DOE | 2025-01-10 → 2025-01-12 | 3 DAYS | PAID
+
+
+
+9. Timezone Handling (Critical)
+Rules
+
+All dates stored in UTC
+
+User timezone detected on login
+
+Calendar renders dates based on:
+
+User timezone
+
+Workspace timezone (configurable)
+
+Edge Cases
+
+Multi-day leave across timezone boundaries
+
+DST handling
+
+Export uses workspace timezone
+
+10. Permissions & Access Control
+Feature	Employee	HR	Owner
+View calendar	✅	✅	✅
+Add leave	✅	✅	✅
+Approve leave	❌	✅	✅
+Manage holidays	❌	✅	✅
+Export data	❌	✅	✅
+Manage users	❌	❌	✅
+11. Non-Functional Requirements
+
+Mobile responsive
+
+Fast month switching
+
+Secure invite links
+
+Audit logs (future)
+
+Scalable to large teams
